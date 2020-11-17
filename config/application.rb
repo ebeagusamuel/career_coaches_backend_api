@@ -12,7 +12,6 @@ require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-require "dotenv/rails"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
