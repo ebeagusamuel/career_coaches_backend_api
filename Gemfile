@@ -45,3 +45,6 @@ gem 'rubocop', '~>0.81.0'
 
 # jwt for authentication
 gem 'jwt'
+
+# generate dummy data
+gem 'faker'
