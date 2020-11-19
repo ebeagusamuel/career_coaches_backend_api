@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.current_user(@user)
 
-    render json: @appointments
+    render json: @appointments, status: :ok
   end
 
   def book_appointment
@@ -12,7 +12,7 @@ class AppointmentsController < ApplicationController
     if req.save
       render json: { message: 'Appointment created successfully' }, status: :created
     else
-      render json: { message: 'Unable to create an appointment', error: req.errors.full_messages.to_sentence }
+      render json: { error: req.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 
