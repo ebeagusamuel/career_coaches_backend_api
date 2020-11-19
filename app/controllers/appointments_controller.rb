@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   end
 
   def book_appointment
-    req = @user.appointments.build(coach_id: params[:coach_id])
+    req = @user.appointments.build(coach_id: params[:coach_id], date_and_time: params[:date])
     if req.save
       render json: { message: 'Appointment created successfully' }, status: :created
     else
