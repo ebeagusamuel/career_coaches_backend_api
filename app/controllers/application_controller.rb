@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # before_action :authorized
+  before_action :authorized
 
   SECRET = Rails.application.credentials.jwt[:secret]
 

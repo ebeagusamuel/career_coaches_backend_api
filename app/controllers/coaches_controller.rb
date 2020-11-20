@@ -1,9 +1,9 @@
 class CoachesController < ApplicationController
   def index
-    images = [];
+    images = []
     @coaches = Coach.all
-    @coaches.each {|coach| images.push(rails_blob_path(coach.image)) }
+    @coaches.each { |coach| images.push(rails_blob_path(coach.image)) }
 
-    render json: {coaches: @coaches, images: images}, status: :ok
+    render json: { coaches: @coaches, images: images }, status: :ok
   end
 end

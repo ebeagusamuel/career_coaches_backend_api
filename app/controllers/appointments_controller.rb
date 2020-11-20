@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
-  # before_action :authorized
+  before_action :authorized
 
   def index
-    @appointments = Appointment.current_user(@user)
+    @appointments = Appointment.where('user_id = ?', @user.id)
 
     render json: @appointments, status: :ok
   end
