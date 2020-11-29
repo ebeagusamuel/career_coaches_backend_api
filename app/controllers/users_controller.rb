@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:auto_login]
 
+  def index
+    @users = User.all
+    render json: @users
+  end
+
   def create
-    @user = User.create(user_params)
-    if @user.valid?
+    @user = User.new(user_params)
+    if @user.save
       token = encode_token({ user_id: @user.id })
       render json: { user: @user, token: token }, status: :created
     else
@@ -18,7 +23,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { user: @user, token: token }, status: :ok
     else
-      render json: { error: 'Invalid username or password' }, status: :unauthorized
+      render json: { error: 'Invalid username or password' }, status: :unprocessable_entity
     end
   end
 

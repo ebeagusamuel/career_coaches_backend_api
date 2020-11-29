@@ -9,8 +9,12 @@ class AppointmentsController < ApplicationController
 
   def book_appointment
     req = @user.appointments.build(coach_id: params[:coach_id], date_and_time: params[:date])
-    if req.save
-      render json: { message: 'Appointment created successfully' }, status: :created
+    appointment =  Appointment.where(user_id: @user.id, coach_id: params[:coach_id]).count
+    coach_name = Coach.find_by(id: params[:coach_id]).name
+    if appointment.zero?
+      render json: { message: "You already have an appointment with #{coach_name}" }, status: :ok
+    elsif req.save
+      render json: { message: "Appointment with #{coach_name} created successfully."}, status: :created
     else
       render json: { error: req.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
