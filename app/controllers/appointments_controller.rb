@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
     req = @user.appointments.build(coach_id: params[:coach_id], date_and_time: params[:date])
     appointment =  Appointment.where(user_id: @user.id, coach_id: params[:coach_id]).count
     coach_name = Coach.find_by(id: params[:coach_id]).name
-    if appointment.zero?
+    if appointment.positive?
       render json: { message: "You already have an appointment with #{coach_name}" }, status: :ok
     elsif req.save
       render json: { message: "Appointment with #{coach_name} created successfully."}, status: :created
@@ -24,6 +24,6 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.where(user_id: @user.id, coach_id: params[:coach_id])
     coach_name = Coach.find_by(id: params[:coach_id]).name
     appointment.destroy_all
-    render json: { message: "Your appointment with #{coach_name} has been cancelled}" }
+    render json: { message: "Your appointment with #{coach_name} has been cancelled", coach_id: params[:coach_id] }
   end
 end
