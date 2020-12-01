@@ -50,3 +50,5 @@ gem 'jwt'
 
 # generate dummy data
 gem 'faker'
+# aws s3 storage
+gem 'aws-sdk-s3', require: false
