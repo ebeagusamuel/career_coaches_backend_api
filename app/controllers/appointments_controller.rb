@@ -24,6 +24,6 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.where(user_id: @user.id, coach_id: params[:coach_id])
     coach_name = Coach.find_by(id: params[:coach_id]).name
     appointment.destroy_all
-    render json: { message: "Your appointment with #{coach_name} has been cancelled", coach_id: params[:coach_id] }
+    render json: { message: "Your appointment with #{coach_name} has been cancelled", coach_id: params[:coach_id] }, status: :ok
   end
 end
