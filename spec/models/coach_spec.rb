@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Coach, type: :model do
-  subject { described_class.new(name: 'John Doe',
-     location: 'My address', qualification: 'qualification',
-      charge_per_hour: '$50', phone_number: 'phone number') }
+  subject do
+    described_class.new(name: 'John Doe',
+                        location: 'My address', qualification: 'qualification',
+                        charge_per_hour: '$50', phone_number: 'phone number')
+  end
 
   it 'is valid when all the required attributes is present' do
     expect(subject).to be_valid

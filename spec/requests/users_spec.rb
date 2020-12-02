@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
-  let(:user_details) { {username: 'JohnDoe',
-    email: 'johndoe@test.com', password: 'password' } }
-  
+  let(:user_details) do
+    { username: 'JohnDoe',
+      email: 'johndoe@test.com', password: 'password' }
+  end
+
   let!(:auto_user) { create(:user) }
   let!(:token) { JWT.encode({ user_id: auto_user.id }, 'gerrad199') }
   let!(:req_headers) { { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{token}" } }
@@ -36,7 +38,7 @@ RSpec.describe 'Users API', type: :request do
 
   describe 'POST /login' do
     context 'when user logs in with valid parameters' do
-      let(:login_attributes) { { username: 'JohnDoe', password: 'password'} }
+      let(:login_attributes) { { username: 'JohnDoe', password: 'password' } }
       before { post '/login', params: login_attributes }
 
       it 'logs in a user' do
@@ -75,9 +77,9 @@ RSpec.describe 'Users API', type: :request do
       end
     end
 
-    context 'when the current user is authorized' do 
-      before { get '/auto_login', headers: req_headers, as: :json}
-      
+    context 'when the current user is authorized' do
+      before { get '/auto_login', headers: req_headers, as: :json }
+
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
