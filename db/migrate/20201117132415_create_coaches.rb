@@ -5,6 +5,8 @@ class CreateCoaches < ActiveRecord::Migration[6.0]
       t.string :location
       t.string :qualification
       t.string :charge_per_hour
+      t.string :phone_number
+      t.string :image_path
 
       t.timestamps
     end
