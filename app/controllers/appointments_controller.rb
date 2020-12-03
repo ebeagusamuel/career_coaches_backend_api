@@ -24,6 +24,6 @@ class AppointmentsController < ApplicationController
   def destroy
     Appointment.for_user(@user.id, params[:coach_id]).destroy_all
     render json: { message: "Your appointment with #{Coach.coach_name(params[:coach_id])}
-           has been cancelled" }, status: :ok
+           has been cancelled", coach_id: params[:coach_id] }, status: :ok
   end
 end
