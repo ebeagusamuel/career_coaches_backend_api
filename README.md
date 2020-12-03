@@ -125,11 +125,11 @@ curl -X GET \
 ### Book Appointment
 This is the API endpoint related to booking appointments in the system.
 #### Endpoint
-`https://career-coaches-api.herokuapp.com/book_appointment`
+`https://career-coaches-api.herokuapp.com/appointments`
 #### Sample Request
 ````
 curl -X POST \
-  https://career-coaches-api.herokuapp.com/book_appointment \
+  https://career-coaches-api.herokuapp.com/appointments \
   -H 'Authorization: Bearer <Token>' \
   -H 'cache-control: no-cache' \
   -d 'coach_id=2&date=021-01-08T14:00:00.000Z'
@@ -151,11 +151,11 @@ curl -X POST \
 ### Cancel Appointment
 This is the API endpoint related to cancelling appointments in the system.
 #### Endpoint
-`https://career-coaches-api.herokuapp.com/cancel_appointment`
+`https://career-coaches-api.herokuapp.com/appointments/:id`
 #### Sample Request
 ````
 curl -X POST \
-  https://career-coaches-api.herokuapp.com/cancel_appointment \
+  https://career-coaches-api.herokuapp.com/cancel_appointment/:id \
   -H 'Authorization: Bearer <Token>' \
   -H 'cache-control: no-cache' \
   -d 'coach_id=2'
