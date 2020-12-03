@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
     render json: @appointments, status: :ok
   end
 
-  def book_appointment
+  def create
     req = @user.appointments.build(coach_id: params[:coach_id], date_and_time: params[:date])
     appointment = Appointment.where(user_id: @user.id, coach_id: params[:coach_id]).count
     coach_name = Coach.find_by(id: params[:coach_id]).name
@@ -20,7 +20,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def cancel_appointment
+  def delete
     appointment = Appointment.where(user_id: @user.id, coach_id: params[:coach_id])
     coach_name = Coach.find_by(id: params[:coach_id]).name
     appointment.destroy_all
